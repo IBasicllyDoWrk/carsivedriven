@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="edit-form-container">
+  <h2>Edit Car</h2>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+      <label class="form-label">{{ form.make.label.text }}</label>
+      {{ form.make(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.model.label.text }}</label>
+      {{ form.model(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.model_year.label.text }}</label>
+      {{ form.model_year(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.engine.label.text }}</label>
+      {{ form.engine(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.transmission.label.text }}</label>
+      {{ form.transmission(class="form-control") }}
+    </div>
+
+    <div class="button-row">
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

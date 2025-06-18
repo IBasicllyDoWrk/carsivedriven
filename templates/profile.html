@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-container">
+  <h2>Profile</h2>
+
+  <p><strong>Username:</strong> {{ user.username }}</p>
+  <p><strong>Name:</strong> {{ user.name }}</p>
+  <p><strong>Age:</strong> {{ user.age }}</p>
+  <p><strong>Location:</strong> {{ user.location }}</p>
+  <p><strong>Total Cars Driven:</strong> {{ total_cars }}</p>
+
+  {% if total_cars > 0 %}
+    <p><strong>Newest Car:</strong> {{ newest_car.make }} {{ newest_car.model }} ({{ newest_car.model_year }})</p>
+    <p><strong>Oldest Car:</strong> {{ oldest_car.make }} {{ oldest_car.model }} ({{ oldest_car.model_year }})</p>
+  {% else %}
+    <p>You haven't added any cars yet.</p>
+  {% endif %}
+
+  <div style="display: flex; gap: 10px; width: 100%;">
+  <form action="{{ url_for('update_profile') }}" method="GET" style="flex: 1; margin: 0;">
+    <button type="submit" class="btn btn-primary w-100">Edit Profile</button>
+  </form>
+
+  <form method="POST" action="{{ url_for('delete_profile') }}" style="flex: 1; margin: 0;">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="btn btn-danger w-100"
+            onclick="return confirm('Are you sure you want to delete your profile? This action cannot be undone.')">
+      Delete My Profile
+    </button>
+  </form>
+</div>
+
+
+{% endblock %}

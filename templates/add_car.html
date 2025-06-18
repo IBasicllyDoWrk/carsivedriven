@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="form-wrapper">
+  <h2>Add a Car</h2>
+
+  <form method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+      <label class="form-label">{{ form.make.label.text }}</label>
+      {{ form.make(class="form-control") }}
+      {% for error in form.make.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.model.label.text }}</label>
+      {{ form.model(class="form-control") }}
+      {% for error in form.model.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.model_year.label.text }}</label>
+      {{ form.model_year(class="form-control") }}
+      {% for error in form.model_year.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.engine.label.text }}</label>
+      {{ form.engine(class="form-control") }}
+      {% for error in form.engine.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.transmission.label.text }}</label>
+      {{ form.transmission(class="form-control") }}
+      {% for error in form.transmission.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    {{ form.submit(class="submit-btn") }}
+  </form>
+</div>
+
+{% endblock %}

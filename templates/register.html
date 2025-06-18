@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="form-container">
+  <h2>Register</h2>
+
+  <form method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+      <label class="form-label">{{ form.username.label.text }}</label>
+      {{ form.username(class="form-input", placeholder="Enter a username") }}
+      {% for error in form.username.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.name.label.text }}</label>
+      {{ form.name(class="form-input", placeholder="Enter your name") }}
+      {% for error in form.name.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.age.label.text }}</label>
+      {{ form.age(class="form-input", placeholder="Enter your age") }}
+      {% for error in form.age.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.location.label.text }}</label>
+      {{ form.location(class="form-input", placeholder="Enter your location") }}
+      {% for error in form.location.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.password.label.text }}</label>
+      {{ form.password(class="form-input", placeholder="Create a password") }}
+      {% for error in form.password.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">{{ form.confirm_password.label.text }}</label>
+      {{ form.confirm_password(class="form-input", placeholder="Confirm your password") }}
+      {% for error in form.confirm_password.errors %}
+        <div class="form-error">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    {{ form.submit(class="submit-btn") }}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible">
+            {{ message }}
+            <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';">&times;</button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </form>
+
+  <p class="login-link">
+    Already have an account?
+    <a href="{{ url_for('login') }}">Login here</a>
+  </p>
+</div>
+
+{% endblock %}
